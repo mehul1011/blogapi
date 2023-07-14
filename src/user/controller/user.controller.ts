@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../service/user.service';
 import { User } from '../models/user.interface';
-import { Observable } from 'rxjs';
+import { Observable, catchError, from, map, of } from 'rxjs';
 
 @Controller('user')
 export class UserController {
@@ -21,13 +21,26 @@ export class UserController {
   }
 
   @Get(':id')
-  findOne(@Param() params): Observable<User> {
-    return this.userService.findOne(params.id);
+  findOne(@Param() params): Observable<User | any> {
+    return this.userService.findOne(params.id).pipe(
+      map((user: User) => user),
+      catchError((err) => of({ error: err.message })),
+    );
+  }
+
+  @Post('login')
+  login(@Body() user: User): Observable<any> {
+    return this.userService.login(user).pipe(
+      map((jwt: string) => {
+        return { access_token: jwt };
+      }),
+      catchError((err) => of({ error: err.message })),
+    );
   }
 
   @Get()
   findAll(): Observable<User[]> {
-    return this.userService.findAll();
+    return from(this.userService.findAll());
   }
 
   @Delete(':id')

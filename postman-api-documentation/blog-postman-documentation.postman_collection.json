@@ -94,13 +94,13 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/user/12",
+			"name": "http://localhost:3000/user",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"shane Doe\",\n    \"username\": \"shane008\"\n}\n",
+					"raw": "{\n    \"name\": \"shane john\",\n    \"username\": \"shawddne00833\",\n    \"password\": \"johwdwdn@123\",\n    \"email\": \"shanedwdwd@gmail.com\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -116,6 +116,35 @@
 					"port": "3000",
 					"path": [
 						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/user/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Football\",\n    \"description\": \"Messi the Football\",\n    \"price\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
 					]
 				}
 			},
