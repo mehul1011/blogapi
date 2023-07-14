@@ -58,6 +58,19 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Setting up Environments for DB connection
+
+```bash
+# Replace in app.module.ts file with the .env file name path
+example:
+fileName = .prod.env
+
+Put this file name in app.module
+
+I have provided a sample .sample.env file
+just replace your DB connection settings.
+```
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
