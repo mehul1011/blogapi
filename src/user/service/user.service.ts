@@ -2,11 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../models/user.entity';
 import { Repository } from 'typeorm';
-import { User } from '../models/user.interface';
+import { User, UserRole } from '../models/user.interface';
 import { Observable, from, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/auth/services/auth.service';
-
+import {
+  paginate,
+  Pagination,
+  IPaginationOptions,
+} from 'nestjs-typeorm-paginate';
 @Injectable()
 export class UserService {
   constructor(
@@ -23,7 +27,7 @@ export class UserService {
         newUser.username = user.username;
         newUser.email = user.email;
         newUser.password = hashedPassword;
-        newUser.role = user.role;
+        newUser.role = UserRole.USER; // by default lowest role
         return from(this.userRepo.save(newUser)).pipe(
           map((user: User) => {
             const { password, ...result } = user;
@@ -56,6 +60,15 @@ export class UserService {
     );
   }
 
+  paginate(options: IPaginationOptions): Observable<Pagination<User>> {
+    return from(paginate<User>(this.userRepo, options)).pipe(
+      map((userPagable: Pagination<User>) => {
+        userPagable.items.forEach((val) => delete val.password);
+        return userPagable;
+      }),
+    );
+  }
+
   deleteOne(id: number): Observable<any> {
     return from(this.userRepo.delete(id));
   }
@@ -64,6 +77,7 @@ export class UserService {
     // check if the actual user is asking for this change
     delete user.password;
     delete user.email;
+    delete user.role; // user can't delete their own role
     return from(this.userRepo.update(id, user));
   }
 
