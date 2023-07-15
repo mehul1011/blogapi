@@ -1,5 +1,6 @@
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { IsEmail, IsNotEmpty } from 'class-validator';
+import { UserRole } from './user.interface';
 
 @Entity()
 export class UserEntity {
@@ -18,10 +19,12 @@ export class UserEntity {
   @IsNotEmpty()
   email: string;
 
-  //   @IsNotEmpty()
   @Column()
   @IsNotEmpty()
   password: string;
+
+  @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
+  role: UserRole;
 
   @BeforeInsert()
   emailToLowerCase() {
