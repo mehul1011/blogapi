@@ -69,6 +69,14 @@ Put this file name in app.module
 
 I have provided a sample .sample.env file
 just replace your DB connection settings.
+
+DB_HOST=localhost/host IP
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=pass
+DB_DATABASE=sampleDB
+DB_SYNC=true/false
+JWT_SECRET=randomTotallyqwertKeysAreonkeyboard
 ```
 
 ## Support
