@@ -144,7 +144,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY4OTQwMzU4NSwiZXhwIjoxNjg5NTAzNTg1fQ.Yua6tJY_RXcHwkaA63ar3XsXoljCNo0EcdWes6qUxmk",
               "type": "string"
             }
           ]
@@ -166,6 +166,41 @@
           "host": ["localhost"],
           "port": "3000",
           "path": ["user", "9", "role"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "pagination of user list",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/user?page=2&limit=1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["user"],
+          "query": [
+            {
+              "key": "page",
+              "value": "2"
+            },
+            {
+              "key": "limit",
+              "value": "1"
+            }
+          ]
         }
       },
       "response": []
