@@ -49,21 +49,35 @@ export class UserController {
     );
   }
 
-  @hasRoles(UserRole.ADMIN)
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @hasRoles(UserRole.ADMIN)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   index(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
+    @Query('username') username: string,
   ): Observable<Pagination<User>> {
     limit = limit > 100 ? 100 : limit;
-    return from(
-      this.userService.paginate({
-        page: Number(page),
-        limit: Number(limit),
-        route: 'http://localhost:3000/user', // based on the route it attaches the next, prev, first, last page links
-      }),
-    );
+    if (username === null || username === undefined) {
+      return from(
+        this.userService.paginate({
+          page: Number(page),
+          limit: Number(limit),
+          route: 'http://localhost:3000/api/user', // based on the route it attaches the next, prev, first, last page links
+        }),
+      );
+    } else {
+      return from(
+        this.userService.paginateFilterByUsername(
+          {
+            page: Number(page),
+            limit: Number(limit),
+            route: 'http://localhost:3002/api/user',
+          },
+          { username },
+        ),
+      );
+    }
   }
 
   @Delete(':id')
