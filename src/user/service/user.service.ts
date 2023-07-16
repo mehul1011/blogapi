@@ -99,8 +99,11 @@ export class UserService {
                   `?page=${Number(options.page) - 1}&limit=${options.limit}`
                 : '',
             next:
-              options.route +
-              `?limit=${options.limit}&page=${Number(options.page) + 1}`,
+              Number(options.page) !=
+              Math.ceil(totalUsers / Number(options.limit))
+                ? options.route +
+                  `?limit=${options.limit}&page=${Number(options.page) + 1}`
+                : '',
             last:
               options.route +
               `?limit=${options.limit}&page=${Math.ceil(
