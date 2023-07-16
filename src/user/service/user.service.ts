@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../models/user.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { User, UserRole } from '../models/user.interface';
 import { Observable, from, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
@@ -65,6 +65,57 @@ export class UserService {
       map((userPagable: Pagination<User>) => {
         userPagable.items.forEach((val) => delete val.password);
         return userPagable;
+      }),
+    );
+  }
+
+  paginateFilterByUsername(
+    options: IPaginationOptions,
+    user: User,
+  ): Observable<Pagination<User>> {
+    console.log(options, user);
+    return from(
+      this.userRepo.findAndCount({
+        skip: Number(options.page) * Number(options.limit) || 0,
+        take: Number(options.limit) || 10,
+        order: { id: 'ASC' },
+        select: ['id', 'name', 'username', 'email', 'role'],
+        where: [
+          {
+            username: Like(`%${user.username}%`),
+          },
+        ],
+      }),
+    ).pipe(
+      map(([users, totalUsers]) => {
+        console.log(users, totalUsers);
+        const usersPagable: Pagination<User> = {
+          items: users,
+          links: {
+            first: options.route + `?limit=${options.limit}`,
+            previous:
+              Number(options.page) > 0
+                ? options.route +
+                  `?page=${Number(options.page) - 1}&limit=${options.limit}`
+                : '',
+            next:
+              options.route +
+              `?limit=${options.limit}&page=${Number(options.page) + 1}`,
+            last:
+              options.route +
+              `?limit=${options.limit}&page=${Math.ceil(
+                totalUsers / Number(options.limit),
+              )}`,
+          },
+          meta: {
+            currentPage: Number(options.page),
+            itemCount: users.length,
+            totalItems: totalUsers,
+            totalPages: Math.ceil(totalUsers / Number(options.limit)),
+            itemsPerPage: Number(options.limit),
+          },
+        };
+        return usersPagable;
       }),
     );
   }
