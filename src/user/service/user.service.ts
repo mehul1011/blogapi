@@ -132,7 +132,9 @@ export class UserService {
     delete user.password;
     delete user.email;
     delete user.role; // user can't delete their own role
-    return from(this.userRepo.update(id, user));
+    return from(this.userRepo.update(id, user)).pipe(
+      switchMap(() => this.findOne(id)),
+    );
   }
 
   login(user: User): Observable<string> {
