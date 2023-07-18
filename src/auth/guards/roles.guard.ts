@@ -13,7 +13,7 @@ import { UserService } from 'src/user/service/user.service';
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(
-    @Inject(forwardRef(() => UserService))
+    @Inject(forwardRef(() => UserService)) // This means that instead of injecting actual instances of A and B, we inject the providers/factories responsible for creating instances of them (a solution for resolving the circular dependencies)
     private userService: UserService,
     private reflector: Reflector,
   ) {}

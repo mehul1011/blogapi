@@ -33,11 +33,11 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/user",
+          "raw": "http://localhost:3002/api/user",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
-          "path": ["user"]
+          "port": "3002",
+          "path": ["api", "user"]
         }
       },
       "response": []
@@ -67,11 +67,21 @@
     {
       "name": "Update Existing user",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
         "method": "PUT",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"id\": 7,\n    \"name\": \"shane dawson1\",\n    \"username\": \"shanwDaw22son112\",\n    \"password\": \"Shane@123\",\n    \"email\": \"shane.dawson@gmail.com\"\n}",
+          "raw": "{\n    \"id\": 10,\n    \"name\": \"nami\",\n    \"username\": \"nami\",\n     \"password\": \"nami@123\",\n    \"email\": \"nami@gmail.com\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -79,11 +89,11 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/user/7",
+          "raw": "http://localhost:3002/api/user/9",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
-          "path": ["user", "7"]
+          "port": "3002",
+          "path": ["api", "user", "9"]
         }
       },
       "response": []
@@ -127,11 +137,11 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/user/login",
+          "raw": "http://localhost:3002/api/user/login",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
-          "path": ["user", "login"]
+          "port": "3002",
+          "path": ["api", "user", "login"]
         }
       },
       "response": []
@@ -186,20 +196,79 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/user?page=2&limit=1",
+          "raw": "http://localhost:3002/api/user?username=zoro&page=3&limit=1",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
-          "path": ["user"],
+          "port": "3002",
+          "path": ["api", "user"],
           "query": [
             {
+              "key": "username",
+              "value": "zoro"
+            },
+            {
               "key": "page",
-              "value": "2"
+              "value": "3"
             },
             {
               "key": "limit",
               "value": "1"
             }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "image upload",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "/Users/mehulshrinivastava/Downloads/Black White Modern Company Business Card.png"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/user/upload",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "user", "upload"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "fetching Image ",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3002/api/user/profile-image/BlackWhiteModernCompanyBusinessCard6a206a50-a88f-406a-a8db-a02d0af835c1.png",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": [
+            "api",
+            "user",
+            "profile-image",
+            "BlackWhiteModernCompanyBusinessCard6a206a50-a88f-406a-a8db-a02d0af835c1.png"
           ]
         }
       },
