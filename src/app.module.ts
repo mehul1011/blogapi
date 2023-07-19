@@ -5,6 +5,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { BlogModule } from './blog/blog.module';
+import { UserEntity } from './user/models/user.entity';
+import { BlogEntryEntity } from './blog/models/blog-entry.entity';
 
 @Module({
   imports: [
@@ -24,7 +27,7 @@ import { AuthModule } from './auth/auth.module';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
-        // entities: [User, Topic, Comment],
+        // entities: [UserEntity, BlogEntryEntity],
         entities: [__dirname + '/../**/*.entity.js'],
         synchronize: configService.get<boolean>('DB_SYNC'),
       }),
@@ -32,6 +35,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     UserModule,
     AuthModule,
+    BlogModule,
   ],
   controllers: [AppController],
   providers: [AppService],
