@@ -26,7 +26,8 @@ export class UserEntity {
   @IsNotEmpty()
   email: string;
 
-  @Column()
+  @Column({ select: false }) // unless SELECT query demands it won't be given
+  // @Column()
   @IsNotEmpty()
   password: string;
 
