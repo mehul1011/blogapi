@@ -73,7 +73,6 @@ export class UserService {
     options: IPaginationOptions,
     user: User,
   ): Observable<Pagination<User>> {
-    console.log(options, user);
     return from(
       this.userRepo.findAndCount({
         skip: Number(options.page) * Number(options.limit) || 0,
@@ -88,7 +87,6 @@ export class UserService {
       }),
     ).pipe(
       map(([users, totalUsers]) => {
-        console.log(users, totalUsers);
         const usersPagable: Pagination<User> = {
           items: users,
           links: {
@@ -173,6 +171,6 @@ export class UserService {
   }
 
   updateRoleOfUser(id: number, user: User): Observable<any> {
-    return from(this.userRepo.update(id, user));
+    return from(this.userRepo.update(id, user as User));
   }
 }
