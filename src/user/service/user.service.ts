@@ -11,11 +11,14 @@ import {
   Pagination,
   IPaginationOptions,
 } from 'nestjs-typeorm-paginate';
+import { BlogService } from 'src/blog/service/blog.service';
+import { BlogEntryEntity } from 'src/blog/models/blog-entry.entity';
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepo: Repository<UserEntity>,
+
     private authService: AuthService,
   ) {}
 
@@ -41,7 +44,9 @@ export class UserService {
   } // from converts promise to Observable that is returned
 
   findOne(id: number): Observable<User> {
-    return from(this.userRepo.findOne({ where: { id } })).pipe(
+    return from(
+      this.userRepo.findOne({ where: { id }, relations: ['blogEntries'] }),
+    ).pipe(
       map((user: User) => {
         const { password, ...result } = user;
         return result;
@@ -61,9 +66,22 @@ export class UserService {
   }
 
   paginate(options: IPaginationOptions): Observable<Pagination<User>> {
+    console.log(options);
     return from(paginate<User>(this.userRepo, options)).pipe(
       map((userPagable: Pagination<User>) => {
-        userPagable.items.forEach((val) => delete val.password);
+        console.log(userPagable);
+        userPagable.items.map((user) => {
+          user.blogEntries = user.blogEntries || [];
+          return user;
+        });
+        // userPagable.items.forEach((val) => {
+        //   delete val.password;
+        //   this.blogService.findOne(val.id).pipe(
+        //     map((blog) => {
+        //       val.blogEntries.push(blog);
+        //     }),
+        //   );
+        // });
         return userPagable;
       }),
     );
@@ -73,12 +91,14 @@ export class UserService {
     options: IPaginationOptions,
     user: User,
   ): Observable<Pagination<User>> {
+    console.log(user, options);
     return from(
       this.userRepo.findAndCount({
         skip: Number(options.page) * Number(options.limit) || 0,
         take: Number(options.limit) || 10,
         order: { id: 'ASC' },
         select: ['id', 'name', 'username', 'email', 'role'],
+        relations: ['blogEntries'],
         where: [
           {
             username: Like(`%${user.username}%`),
@@ -87,6 +107,7 @@ export class UserService {
       }),
     ).pipe(
       map(([users, totalUsers]) => {
+        console.log(users);
         const usersPagable: Pagination<User> = {
           items: users,
           links: {
@@ -150,7 +171,20 @@ export class UserService {
   }
 
   validateUser(email: string, password: string): Observable<User | Error> {
-    return this.findByMail(email).pipe(
+    return from(
+      this.userRepo.findOne({
+        where: { email },
+        select: [
+          'id',
+          'password',
+          'name',
+          'username',
+          'email',
+          'role',
+          'profileImage',
+        ],
+      }),
+    ).pipe(
       switchMap((user: User) =>
         this.authService.comparePasswords(password, user.password).pipe(
           map((matched: boolean) => {

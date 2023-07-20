@@ -1,278 +1,418 @@
 {
-  "info": {
-    "_postman_id": "9a857b5a-3d47-4d05-9a10-c9e949ddde89",
-    "name": "blog-postman-documentation",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Get all User list (Requires admin role)",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"name\": \"shane Doe\",\n    \"username\": \"shane008\"\n}\n",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3002/api/user",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3002",
-          "path": ["api", "user"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "User Delete",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/user/8",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3000",
-          "path": ["user", "8"],
-          "query": [
-            {
-              "key": "id",
-              "value": "1",
-              "disabled": true
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Update Existing user",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "PUT",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"id\": 10,\n    \"name\": \"nami\",\n    \"username\": \"nami\",\n     \"password\": \"nami@123\",\n    \"email\": \"nami@gmail.com\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3002/api/user/9",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3002",
-          "path": ["api", "user", "9"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "New User Register",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"name\": \"nami\",\n    \"username\": \"nami\",\n    \"password\": \"nami@123\",\n    \"email\": \"nami@gmail.com\",\n    \"role\": \"admin\"\n}\n",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/user",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3000",
-          "path": ["user"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "User login",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n        \"password\": \"nami@123\",\n    \"email\": \"nami@gmail.com\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3002/api/user/login",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3002",
-          "path": ["api", "user", "login"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Change role (JWT + Role of admin)",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY4OTQwMzU4NSwiZXhwIjoxNjg5NTAzNTg1fQ.Yua6tJY_RXcHwkaA63ar3XsXoljCNo0EcdWes6qUxmk",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "PUT",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"role\": \"editor\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/user/9/role",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3000",
-          "path": ["user", "9", "role"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "pagination of user list",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3002/api/user?username=zoro&page=3&limit=1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3002",
-          "path": ["api", "user"],
-          "query": [
-            {
-              "key": "username",
-              "value": "zoro"
-            },
-            {
-              "key": "page",
-              "value": "3"
-            },
-            {
-              "key": "limit",
-              "value": "1"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "image upload",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "formdata",
-          "formdata": [
-            {
-              "key": "file",
-              "type": "file",
-              "src": "/Users/mehulshrinivastava/Downloads/Black White Modern Company Business Card.png"
-            }
-          ]
-        },
-        "url": {
-          "raw": "http://localhost:3002/api/user/upload",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3002",
-          "path": ["api", "user", "upload"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "fetching Image ",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3002/api/user/profile-image/BlackWhiteModernCompanyBusinessCard6a206a50-a88f-406a-a8db-a02d0af835c1.png",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3002",
-          "path": [
-            "api",
-            "user",
-            "profile-image",
-            "BlackWhiteModernCompanyBusinessCard6a206a50-a88f-406a-a8db-a02d0af835c1.png"
-          ]
-        }
-      },
-      "response": []
-    }
-  ]
+	"info": {
+		"_postman_id": "9a857b5a-3d47-4d05-9a10-c9e949ddde89",
+		"name": "blog-postman-documentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all User list (Requires admin role)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY4OTQwMzU4NSwiZXhwIjoxNjg5NTAzNTg1fQ.Yua6tJY_RXcHwkaA63ar3XsXoljCNo0EcdWes6qUxmk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"shane Doe\",\n    \"username\": \"shane008\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/user/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"8"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Existing user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiQmxhY2tXaGl0ZU1vZGVybkNvbXBhbnlCdXNpbmVzc0NhcmQ2YTIwNmE1MC1hODhmLTQwNmEtYThkYi1hMDJkMGFmODM1YzEucG5nIn0sImlhdCI6MTY4OTY4NTgxNiwiZXhwIjoxNjg5Nzg1ODE2fQ.CK281uZQ1uBOTZ-MZgtdypv9J9oOyJ6yV4rL8xAKpIo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 10,\n    \"name\": \"nami\",\n    \"username\": \"nami\",\n     \"password\": \"nami@123\",\n    \"email\": \"nami@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/api/user/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"user",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New User Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"nami\",\n    \"username\": \"nami\",\n    \"password\": \"nami@123\",\n    \"email\": \"nami@gmail.com\",\n    \"role\": \"admin\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"password\": \"luffy@123\",\n    \"email\": \"luffy@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change role (JWT + Role of admin)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY4OTQwMzU4NSwiZXhwIjoxNjg5NTAzNTg1fQ.Yua6tJY_RXcHwkaA63ar3XsXoljCNo0EcdWes6qUxmk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"role\": \"editor\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/9/role",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"9",
+						"role"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pagination of user list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY4OTQwMzU4NSwiZXhwIjoxNjg5NTAzNTg1fQ.Yua6tJY_RXcHwkaA63ar3XsXoljCNo0EcdWes6qUxmk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/api/user?username=zoro&page=3&limit=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"user"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "zoro"
+						},
+						{
+							"key": "page",
+							"value": "3"
+						},
+						{
+							"key": "limit",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "image upload",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY4OTY3NzgyOCwiZXhwIjoxNjg5Nzc3ODI4fQ.Z5z4y2a8W-ERyd2phqppZ87XeqHMhBIMjOvWArwI2Dg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/mehulshrinivastava/Downloads/Black White Modern Company Business Card.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3002/api/user/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"user",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetching Image ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/api/user/profile-image/BlackWhiteModernCompanyBusinessCard6a206a50-a88f-406a-a8db-a02d0af835c1.png",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"user",
+						"profile-image",
+						"BlackWhiteModernCompanyBusinessCard6a206a50-a88f-406a-a8db-a02d0af835c1.png"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get single user",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "create a blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJuYW1lIjoibHVmZnkga2luZyIsInVzZXJuYW1lIjoibHVmZnkga2luZyIsImVtYWlsIjoibHVmZnlAZ21haWwuY29tIiwicm9sZSI6ImVkaXRvciIsInByb2ZpbGVJbWFnZSI6bnVsbH0sImlhdCI6MTY4OTc4NDc5MCwiZXhwIjoxNjg5ODg0NzkwfQ._A7pejEJvPKZO6RiZn0yzWhXa4m-qR6rxR-2UGOLf08",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Test title\",\n    \"description\": \"test description\",\n    \"body\": \"test body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/api/blogs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"blogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch all/ user specific blog using query param",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/api/blogs/?userId=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"blogs",
+						""
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get only blog post by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/api/blogs/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"blogs",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }
