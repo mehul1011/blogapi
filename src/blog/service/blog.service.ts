@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { Observable, from, of, switchMap } from 'rxjs';
+import { Inject, Injectable, forwardRef } from '@nestjs/common';
+import { Observable, from, map, of, switchMap, tap } from 'rxjs';
 import { BlogEntry } from '../models/blog-entry.interface';
 import { User } from 'src/user/models/user.interface';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,6 +13,7 @@ export class BlogService {
   constructor(
     @InjectRepository(BlogEntryEntity)
     private readonly blogRepository: Repository<BlogEntryEntity>,
+    @Inject(forwardRef(() => UserService))
     private userService: UserService,
   ) {}
   create(user: User, blogEntry: BlogEntry): Observable<BlogEntry> {
@@ -44,8 +45,24 @@ export class BlogService {
   }
 
   findOne(id: number): Observable<BlogEntry> {
+    console.log(id);
     return from(
       this.blogRepository.findOne({ where: { id }, relations: ['author'] }),
+      // ).pipe(
+      //   map((blogEntity) => {
+      //     console.log(blogEntity);
+      //     return blogEntity;
+      //   }),
     );
+  }
+
+  updateOne(id: number, blogEntry: BlogEntry): Observable<BlogEntry> {
+    return from(this.blogRepository.update(id, blogEntry)).pipe(
+      switchMap(() => this.findOne(id)),
+    );
+  }
+
+  deleteOne(id: number): Observable<any> {
+    return from(this.blogRepository.delete(id));
   }
 }
