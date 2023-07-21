@@ -1,5 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, map, switchMap, tap } from 'rxjs';
 import { UserService } from 'src/user/service/user.service';
 import { BlogService } from '../service/blog.service';
 import { User } from 'src/user/models/user.interface';
@@ -24,6 +24,7 @@ export class UserIsAuthorGuard implements CanActivate {
           map((blogEntry: BlogEntry) => {
             let hasPermission = false;
             if (user.id === blogEntry.author.id) {
+              // user could be updating different blog with blogId check it
               hasPermission = true;
             }
             return user && hasPermission;
