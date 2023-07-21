@@ -42,7 +42,10 @@ export class BlogEntryEntity {
   headerImage: string;
 
   @Column({ nullable: true })
-  publishedData: Date;
+  publishedDate: Date;
+
+  @Column({ nullable: true })
+  isPublished: boolean;
 
   @ManyToOne((type) => UserEntity, (user) => user.blogEntries)
   author: UserEntity; // each instance of BlogEntry can have => 1 author

@@ -21,12 +21,12 @@ export class RolesGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    const roles = this.reflector.get<string[]>('roles', context.getHandler());
+    const roles = this.reflector.get<string[]>('roles', context.getHandler()); // since the roles decorator has Set the endpoint passed role from client to MetaData, here it get's those roles
     if (!roles) {
       return true;
     }
     const request = context.switchToHttp().getRequest();
-    const user: User = request.user.user;
+    const user: User = request.user;
     return this.userService.findOne(user.id).pipe(
       map((user: User) => {
         const hasRoles = () => roles.indexOf(user.role) > -1;

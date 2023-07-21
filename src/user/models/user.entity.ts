@@ -21,7 +21,7 @@ export class UserEntity {
   @IsNotEmpty()
   username: string;
 
-  @Column()
+  @Column({ unique: true })
   @IsEmail()
   @IsNotEmpty()
   email: string;

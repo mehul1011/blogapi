@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../models/user.entity';
 import { Like, Repository } from 'typeorm';
@@ -18,7 +18,8 @@ export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepo: Repository<UserEntity>,
-
+    @Inject(forwardRef(() => BlogService))
+    private readonly blogService: BlogService,
     private authService: AuthService,
   ) {}
 
@@ -69,19 +70,16 @@ export class UserService {
     console.log(options);
     return from(paginate<User>(this.userRepo, options)).pipe(
       map((userPagable: Pagination<User>) => {
-        console.log(userPagable);
-        userPagable.items.map((user) => {
-          user.blogEntries = user.blogEntries || [];
-          return user;
+        // console.log(userPagable);
+        userPagable.items.forEach((val) => {
+          delete val.password;
+          this.blogService.findOne(val.id).pipe(
+            map((blog) => {
+              console.log(2, blog);
+              val.blogEntries.push(blog);
+            }),
+          );
         });
-        // userPagable.items.forEach((val) => {
-        //   delete val.password;
-        //   this.blogService.findOne(val.id).pipe(
-        //     map((blog) => {
-        //       val.blogEntries.push(blog);
-        //     }),
-        //   );
-        // });
         return userPagable;
       }),
     );

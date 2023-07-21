@@ -16,7 +16,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY4OTQwMzU4NSwiZXhwIjoxNjg5NTAzNTg1fQ.Yua6tJY_RXcHwkaA63ar3XsXoljCNo0EcdWes6qUxmk",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiQmxhY2tXaGl0ZU1vZGVybkNvbXBhbnlCdXNpbmVzc0NhcmQ3MWM4ZmE2ZS03ZjgwLTQ4YWEtOTc2MC1jZjMxZDA2OTRjNDIucG5nIn0sImlhdCI6MTY4OTc4ODc0NiwiZXhwIjoxNjg5ODg4NzQ2fQ.tXBdSon_3RS_81wEtgDzuDb-ypXmNGR_qUvY-jp8t6w",
 							"type": "string"
 						}
 					]
@@ -50,18 +50,29 @@
 		{
 			"name": "User Delete",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiQmxhY2tXaGl0ZU1vZGVybkNvbXBhbnlCdXNpbmVzc0NhcmQ3MWM4ZmE2ZS03ZjgwLTQ4YWEtOTc2MC1jZjMxZDA2OTRjNDIucG5nIn0sImlhdCI6MTY4OTg2MTExNiwiZXhwIjoxNjg5OTYxMTE2fQ.udr-1132J5QmgDBhaOHMFGfiHcOgNJfLkdbV39pfzOQ",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/user/8",
+					"raw": "http://localhost:3002/api/user/11",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3002",
 					"path": [
+						"api",
 						"user",
-						"8"
+						"11"
 					],
 					"query": [
 						{
@@ -82,7 +93,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiQmxhY2tXaGl0ZU1vZGVybkNvbXBhbnlCdXNpbmVzc0NhcmQ2YTIwNmE1MC1hODhmLTQwNmEtYThkYi1hMDJkMGFmODM1YzEucG5nIn0sImlhdCI6MTY4OTY4NTgxNiwiZXhwIjoxNjg5Nzg1ODE2fQ.CK281uZQ1uBOTZ-MZgtdypv9J9oOyJ6yV4rL8xAKpIo",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJuYW1lIjoibHVmZnkiLCJ1c2VybmFtZSI6Imx1ZmZ5a2luZyIsImVtYWlsIjoibHVmZnlAZ21haWwuY29tIiwicm9sZSI6ImVkaXRvciIsInByb2ZpbGVJbWFnZSI6bnVsbH0sImlhdCI6MTY4OTY4NjE2NSwiZXhwIjoxNjg5Nzg2MTY1fQ.AbPSCuE3oWu6VGJlGYTwkG4OX4kDguSPmGRqoavs1U0",
 							"type": "string"
 						}
 					]
@@ -91,7 +102,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 10,\n    \"name\": \"nami\",\n    \"username\": \"nami\",\n     \"password\": \"nami@123\",\n    \"email\": \"nami@gmail.com\"\n}",
+					"raw": "{\n    \"id\": 9,\n    \"name\": \"luffy dono\",\n    \"username\": \"luffy king\",\n     \"password\": \"luffy@123\",\n    \"email\": \"luffyking@gmail.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -129,13 +140,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/user",
+					"raw": "http://localhost:3002/api/user",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3002",
 					"path": [
+						"api",
 						"user"
 					]
 				}
@@ -220,7 +232,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY4OTQwMzU4NSwiZXhwIjoxNjg5NTAzNTg1fQ.Yua6tJY_RXcHwkaA63ar3XsXoljCNo0EcdWes6qUxmk",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiQmxhY2tXaGl0ZU1vZGVybkNvbXBhbnlCdXNpbmVzc0NhcmQ3MWM4ZmE2ZS03ZjgwLTQ4YWEtOTc2MC1jZjMxZDA2OTRjNDIucG5nIn0sImlhdCI6MTY4OTc4ODc0NiwiZXhwIjoxNjg5ODg4NzQ2fQ.tXBdSon_3RS_81wEtgDzuDb-ypXmNGR_qUvY-jp8t6w",
 							"type": "string"
 						}
 					]
@@ -228,7 +240,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3002/api/user?username=zoro&page=3&limit=1",
+					"raw": "http://localhost:3002/api/user?page=1&limit=10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -240,16 +252,12 @@
 					],
 					"query": [
 						{
-							"key": "username",
-							"value": "zoro"
-						},
-						{
 							"key": "page",
-							"value": "3"
+							"value": "1"
 						},
 						{
 							"key": "limit",
-							"value": "1"
+							"value": "10"
 						}
 					]
 				}
@@ -300,10 +308,20 @@
 		{
 			"name": "fetching Image ",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJuYW1lIjoibHVmZnkiLCJ1c2VybmFtZSI6Imx1ZmZ5a2luZyIsImVtYWlsIjoibHVmZnlAZ21haWwuY29tIiwicm9sZSI6ImVkaXRvciIsInByb2ZpbGVJbWFnZSI6bnVsbH0sImlhdCI6MTY4OTY4NjE2NSwiZXhwIjoxNjg5Nzg2MTY1fQ.AbPSCuE3oWu6VGJlGYTwkG4OX4kDguSPmGRqoavs1U0",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3002/api/user/profile-image/BlackWhiteModernCompanyBusinessCard6a206a50-a88f-406a-a8db-a02d0af835c1.png",
+					"raw": "http://localhost:3002/api/user/profile-image/BlackWhiteModernCompanyBusinessCard71c8fa6e-7f80-48aa-9760-cf31d0694c42.png",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -313,7 +331,7 @@
 						"api",
 						"user",
 						"profile-image",
-						"BlackWhiteModernCompanyBusinessCard6a206a50-a88f-406a-a8db-a02d0af835c1.png"
+						"BlackWhiteModernCompanyBusinessCard71c8fa6e-7f80-48aa-9760-cf31d0694c42.png"
 					]
 				}
 			},
@@ -323,7 +341,20 @@
 			"name": "Get single user",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/api/user/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"user",
+						"9"
+					]
+				}
 			},
 			"response": []
 		},
@@ -335,7 +366,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJuYW1lIjoibHVmZnkga2luZyIsInVzZXJuYW1lIjoibHVmZnkga2luZyIsImVtYWlsIjoibHVmZnlAZ21haWwuY29tIiwicm9sZSI6ImVkaXRvciIsInByb2ZpbGVJbWFnZSI6bnVsbH0sImlhdCI6MTY4OTc4NDc5MCwiZXhwIjoxNjg5ODg0NzkwfQ._A7pejEJvPKZO6RiZn0yzWhXa4m-qR6rxR-2UGOLf08",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiQmxhY2tXaGl0ZU1vZGVybkNvbXBhbnlCdXNpbmVzc0NhcmQ3MWM4ZmE2ZS03ZjgwLTQ4YWEtOTc2MC1jZjMxZDA2OTRjNDIucG5nIn0sImlhdCI6MTY4OTg2MTExNiwiZXhwIjoxNjg5OTYxMTE2fQ.udr-1132J5QmgDBhaOHMFGfiHcOgNJfLkdbV39pfzOQ",
 							"type": "string"
 						}
 					]
@@ -352,7 +383,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3002/api/blogs",
+					"raw": "http://localhost:3002/api/blog-entries",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -360,19 +391,19 @@
 					"port": "3002",
 					"path": [
 						"api",
-						"blogs"
+						"blog-entries"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Fetch all/ user specific blog using query param",
+			"name": "Fetch user specific blog using query param",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3002/api/blogs/?userId=10",
+					"raw": "http://localhost:3002/api/blog-entries/?userId=9",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -380,13 +411,13 @@
 					"port": "3002",
 					"path": [
 						"api",
-						"blogs",
+						"blog-entries",
 						""
 					],
 					"query": [
 						{
 							"key": "userId",
-							"value": "10"
+							"value": "9"
 						}
 					]
 				}
@@ -399,7 +430,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3002/api/blogs/2",
+					"raw": "http://localhost:3002/api/blog-entries/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -407,8 +438,122 @@
 					"port": "3002",
 					"path": [
 						"api",
-						"blogs",
+						"blog-entries",
 						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all blog entries paginated",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/api/blog-entries/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"blog-entries",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "userID based get all blog entries paginated",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/api/blog-entries/user/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"blog-entries",
+						"user",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updating a blog entry user should have permission",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiQmxhY2tXaGl0ZU1vZGVybkNvbXBhbnlCdXNpbmVzc0NhcmQ3MWM4ZmE2ZS03ZjgwLTQ4YWEtOTc2MC1jZjMxZDA2OTRjNDIucG5nIn0sImlhdCI6MTY4OTk0NDk0NCwiZXhwIjoxNjkwMDQ0OTQ0fQ.Uo0zQVrAXf561rc78aMX8Si0AqZwg5cmJXnIu-LzYxY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"nami's blog 11\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/api/blog-entries/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"blog-entries",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete blog entry by using blog ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwibmFtZSI6Im5hbWkiLCJ1c2VybmFtZSI6Im5hbWkiLCJlbWFpbCI6Im5hbWlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiQmxhY2tXaGl0ZU1vZGVybkNvbXBhbnlCdXNpbmVzc0NhcmQ3MWM4ZmE2ZS03ZjgwLTQ4YWEtOTc2MC1jZjMxZDA2OTRjNDIucG5nIn0sImlhdCI6MTY4OTg2MTExNiwiZXhwIjoxNjg5OTYxMTE2fQ.udr-1132J5QmgDBhaOHMFGfiHcOgNJfLkdbV39pfzOQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/api/blog-entries/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"blog-entries",
+						"3"
 					]
 				}
 			},

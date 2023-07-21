@@ -20,7 +20,7 @@ export class UserIsUserGuard implements CanActivate {
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
     const params = request.params; // from url /user/7
-    const user: User = request.user.user;
+    const user: User = request.user;
     return this.userService.findOne(user.id).pipe(
       map((user: User) => {
         const hasRoles = () => user.role;

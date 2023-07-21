@@ -14,6 +14,7 @@ import { BlogEntryEntity } from 'src/blog/models/blog-entry.entity';
     // TypeOrmModule.forFeature([BlogEntryEntity]),
 
     forwardRef(() => AuthModule),
+    forwardRef(() => BlogModule),
   ],
   providers: [UserService],
   controllers: [UserController],
