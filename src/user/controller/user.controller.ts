@@ -75,8 +75,8 @@ export class UserController {
   // @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   index(
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
-    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page = 1,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit = 10,
     @Query('username') username: string,
   ): Observable<Pagination<User>> {
     limit = limit > 100 ? 100 : limit;
@@ -131,13 +131,15 @@ export class UserController {
   uploadFile(@UploadedFile() file, @Request() req): Observable<any> {
     // console.log(file);
     const user: User = req.user;
-    return this.userService
-      .updateOne(user.id, { profileImage: file.filename })
-      .pipe(
-        tap((user: User) => console.log(user)),
-        map((user: User) => ({ profileImage: user.profileImage })),
-      );
-    // 2nd arg is only what's required to be changed needs to be passed.
+    return (
+      this.userService
+        // 2nd arg is only what's required to be changed needs to be passed.
+        .updateOne(user.id, { profileImage: file.filename })
+        .pipe(
+          tap((user: User) => console.log(user)),
+          map((user: User) => ({ profileImage: user.profileImage })),
+        )
+    );
   }
 
   @Get('profile-image/:imagename')
