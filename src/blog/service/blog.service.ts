@@ -50,7 +50,6 @@ export class BlogService {
   }
 
   findOne(id: number): Observable<BlogEntry> {
-    console.log(id);
     return from(
       this.blogRepository.findOne({ where: { id }, relations: ['author'] }),
       // ).pipe(
