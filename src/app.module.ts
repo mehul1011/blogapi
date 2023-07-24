@@ -16,7 +16,7 @@ import { BlogEntryEntity } from './blog/models/blog-entry.entity';
       imports: [
         ConfigModule.forRoot({
           isGlobal: true,
-          envFilePath: '.local.env',
+          // envFilePath: '.local.env',
           // envFilePath: '.prod.env',
         }),
       ],
