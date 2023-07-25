@@ -18,6 +18,7 @@ import { BlogEntryEntity } from './blog/models/blog-entry.entity';
           isGlobal: true,
           // envFilePath: '.local.env',
           // envFilePath: '.prod.env',
+          envFilePath: '.env',
         }),
       ],
       useFactory: (configService: ConfigService) => ({
